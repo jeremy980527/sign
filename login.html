@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #000000, #434343);
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            background: transparent;
+            color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 10px;
+            color: #ff0000;
+        }
+
+        a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>登入</h2>
+        <input type="text" id="username" placeholder="用戶名">
+        <input type="password" id="password" placeholder="密碼">
+        <button onclick="login()">登入</button>
+        <div id="message" class="message"></div>
+        <p>還沒有帳號？<a href="register.html">立即註冊</a></p>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (!username || !password) {
+                message.textContent = '請填寫所有欄位！';
+                return;
+            }
+
+            const storedPassword = localStorage.getItem(username);
+            if (storedPassword === password) {
+                window.location.href = 'success.html';
+            } else {
+                message.textContent = '帳號或密碼錯誤！';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
