@@ -53,10 +53,6 @@
             margin-top: 10px;
             color: #ff0000;
         }
-
-        a {
-            color: #fff;
-        }
     </style>
 </head>
 <body>
@@ -66,7 +62,6 @@
         <input type="password" id="password" placeholder="密碼">
         <button onclick="login()">登入</button>
         <div id="message" class="message"></div>
-        <p>還沒有帳號？<a href="register.html">立即註冊</a></p>
     </div>
 
     <script>
@@ -75,20 +70,16 @@
             const password = document.getElementById('password').value;
             const message = document.getElementById('message');
 
-            if (!username || !password) {
-                message.textContent = '請填寫所有欄位！';
-                return;
-            }
-
+            // 檢查帳號密碼是否匹配
             const storedPassword = localStorage.getItem(username);
-            if (storedPassword === password) {
-                window.location.href = 'success.html';
+            if (storedPassword && storedPassword === password) {
+                // 登入成功，跳轉到個人資料頁面
+                window.location.href = `profile.html?username=${username}`;
             } else {
-                message.textContent = '帳號或密碼錯誤！';
+                message.textContent = '帳號或密碼錯誤';
             }
         }
     </script>
 </body>
 </html>
-
 
